@@ -11,6 +11,10 @@ import Advances from "./pages/Advances";
 import Departures from "./pages/Departures";
 import HealthInsurance from "./pages/HealthInsurance";
 import SocialSecurity from "./pages/SocialSecurity";
+import Profile from "./pages/Profile";
+import ProfileSettings from "./pages/ProfileSettings";
+import Settings from "./pages/Settings";
+import Notifications from "./pages/Notifications";
 import NotFound from "./pages/NotFound";
 // Accounting System Pages
 import JournalEntries from "./pages/accounting/JournalEntries";
@@ -38,6 +42,12 @@ const App = () => (
           <Route path="/departures" element={<Departures />} />
           <Route path="/health-insurance" element={<HealthInsurance />} />
           <Route path="/social-security" element={<SocialSecurity />} />
+          
+          {/* User Profile & Settings Routes */}
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/profile/settings" element={<ProfileSettings />} />
+          <Route path="/settings" element={<Settings />} />
+          <Route path="/notifications" element={<Notifications />} />
           
           {/* Accounting System Routes */}
           <Route path="/accounting/journal-entries" element={<JournalEntries />} />

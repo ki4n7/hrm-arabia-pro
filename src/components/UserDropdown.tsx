@@ -1,5 +1,6 @@
 
 import React from "react";
+import { Link } from "react-router-dom";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -36,14 +37,24 @@ const UserDropdown = () => {
           </div>
         </div>
         <DropdownMenuSeparator />
-        <DropdownMenuItem className="flex gap-2 cursor-pointer">
-          <User className="h-4 w-4" />
-          <span>الملف الشخصي</span>
-        </DropdownMenuItem>
-        <DropdownMenuItem className="flex gap-2 cursor-pointer">
-          <Settings className="h-4 w-4" />
-          <span>إعدادات الحساب</span>
-        </DropdownMenuItem>
+        <Link to="/profile">
+          <DropdownMenuItem className="flex gap-2 cursor-pointer">
+            <User className="h-4 w-4" />
+            <span>الملف الشخصي</span>
+          </DropdownMenuItem>
+        </Link>
+        <Link to="/profile/settings">
+          <DropdownMenuItem className="flex gap-2 cursor-pointer">
+            <Settings className="h-4 w-4" />
+            <span>إعدادات الحساب</span>
+          </DropdownMenuItem>
+        </Link>
+        <Link to="/settings">
+          <DropdownMenuItem className="flex gap-2 cursor-pointer">
+            <Settings className="h-4 w-4" />
+            <span>إعدادات النظام</span>
+          </DropdownMenuItem>
+        </Link>
         <DropdownMenuSeparator />
         <DropdownMenuItem className="flex gap-2 cursor-pointer text-red-500 hover:text-red-500">
           <LogOut className="h-4 w-4" />
