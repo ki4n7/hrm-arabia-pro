@@ -1,13 +1,37 @@
 
-import React from "react";
+import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, Bell, User, Search } from "lucide-react";
+import { Menu, Bell, User, Search, Plus } from "lucide-react";
+import NotificationsDropdown from "./NotificationsDropdown";
+import UserDropdown from "./UserDropdown";
+import FormModal from "./FormModal";
+import { useToast } from "@/hooks/use-toast";
 
 interface NavbarProps {
   toggleSidebar: () => void;
 }
 
 const Navbar: React.FC<NavbarProps> = ({ toggleSidebar }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const { toast } = useToast();
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    toast({
+      title: "تم إرسال النموذج بنجاح",
+      description: "سيتم مراجعة الطلب في أقرب وقت ممكن",
+    });
+    closeModal();
+  };
+
   return (
     <nav className="bg-white border-b border-gray-100 sticky top-0 z-30">
       <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
@@ -39,20 +63,65 @@ const Navbar: React.FC<NavbarProps> = ({ toggleSidebar }) => {
             </div>
           </div>
 
-          <div className="flex items-center">
-            <Button variant="ghost" size="icon" className="relative">
-              <Bell className="h-5 w-5" />
-              <span className="absolute top-2 right-2 h-2 w-2 bg-red-500 rounded-full"></span>
+          <div className="flex items-center gap-2">
+            <Button
+              onClick={openModal}
+              size="sm"
+              className="hidden md:flex bg-hrm-blue hover:bg-hrm-blue/90"
+            >
+              <Plus className="h-4 w-4 ml-1" />
+              إضافة جديد
             </Button>
-            <div className="mr-3 flex items-center">
-              <div className="rounded-full bg-hrm-lightBlue p-2">
-                <User className="h-5 w-5 text-hrm-blue" />
-              </div>
-              <span className="mr-2 text-sm font-medium hidden md:block">المدير</span>
-            </div>
+            
+            <NotificationsDropdown />
+            
+            <UserDropdown />
           </div>
         </div>
       </div>
+
+      {/* Form Modal Example */}
+      <FormModal
+        title="نموذج طلب جديد"
+        description="يرجى ملء البيانات المطلوبة لإنشاء طلب جديد"
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        footer={
+          <div className="flex justify-between w-full">
+            <Button variant="outline" onClick={closeModal}>
+              إلغاء
+            </Button>
+            <Button type="submit" form="demoForm">
+              إرسال الطلب
+            </Button>
+          </div>
+        }
+      >
+        <form id="demoForm" onSubmit={handleSubmit} className="space-y-4">
+          <div>
+            <label htmlFor="title" className="block mb-2 text-sm font-medium">
+              عنوان الطلب
+            </label>
+            <input
+              type="text"
+              id="title"
+              className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-hrm-blue/20"
+              required
+            />
+          </div>
+          <div>
+            <label htmlFor="description" className="block mb-2 text-sm font-medium">
+              وصف الطلب
+            </label>
+            <textarea
+              id="description"
+              rows={3}
+              className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-hrm-blue/20"
+              required
+            ></textarea>
+          </div>
+        </form>
+      </FormModal>
     </nav>
   );
 };
