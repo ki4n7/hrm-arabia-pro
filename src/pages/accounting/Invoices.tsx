@@ -4,7 +4,7 @@ import DashboardLayout from "../../layouts/DashboardLayout";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { FileInvoice, Plus, Search, Filter } from "lucide-react";
+import { File, Plus, Search, Filter } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const Invoices = () => {
@@ -21,7 +21,7 @@ const Invoices = () => {
                   <h3 className="text-2xl font-bold mt-1">١٨٥</h3>
                 </div>
                 <div className="bg-blue-100 p-3 rounded-full">
-                  <FileInvoice className="h-6 w-6 text-blue-600" />
+                  <File className="h-6 w-6 text-blue-600" />
                 </div>
               </div>
             </CardContent>
@@ -35,7 +35,7 @@ const Invoices = () => {
                   <h3 className="text-2xl font-bold mt-1">١٠٥</h3>
                 </div>
                 <div className="bg-green-100 p-3 rounded-full">
-                  <FileInvoice className="h-6 w-6 text-green-600" />
+                  <File className="h-6 w-6 text-green-600" />
                 </div>
               </div>
             </CardContent>
@@ -49,7 +49,7 @@ const Invoices = () => {
                   <h3 className="text-2xl font-bold mt-1">٨٠</h3>
                 </div>
                 <div className="bg-red-100 p-3 rounded-full">
-                  <FileInvoice className="h-6 w-6 text-red-600" />
+                  <File className="h-6 w-6 text-red-600" />
                 </div>
               </div>
             </CardContent>
@@ -63,7 +63,7 @@ const Invoices = () => {
                   <h3 className="text-2xl font-bold mt-1">٤٢٥,٧٥٠ ريال</h3>
                 </div>
                 <div className="bg-purple-100 p-3 rounded-full">
-                  <FileInvoice className="h-6 w-6 text-purple-600" />
+                  <File className="h-6 w-6 text-purple-600" />
                 </div>
               </div>
             </CardContent>
@@ -198,7 +198,7 @@ const Invoices = () => {
               {/* Sales Invoices Tab */}
               <TabsContent value="sales" className="p-6 mt-0">
                 <div className="flex flex-col items-center justify-center py-12">
-                  <FileInvoice className="h-16 w-16 text-green-600 mb-4" />
+                  <File className="h-16 w-16 text-green-600 mb-4" />
                   <h3 className="text-xl font-medium text-gray-800 mb-2">فواتير المبيعات</h3>
                   <p className="text-gray-500 mb-6">يمكنك إدارة فواتير المبيعات وإنشاء فواتير جديدة</p>
                   <Button className="bg-green-600 hover:bg-green-700 text-white rounded-lg">
@@ -210,7 +210,7 @@ const Invoices = () => {
               {/* Purchase Invoices Tab */}
               <TabsContent value="purchases" className="p-6 mt-0">
                 <div className="flex flex-col items-center justify-center py-12">
-                  <FileInvoice className="h-16 w-16 text-red-600 mb-4" />
+                  <File className="h-16 w-16 text-red-600 mb-4" />
                   <h3 className="text-xl font-medium text-gray-800 mb-2">فواتير المشتريات</h3>
                   <p className="text-gray-500 mb-6">يمكنك إدارة فواتير المشتريات وإنشاء فواتير جديدة</p>
                   <Button className="bg-red-600 hover:bg-red-700 text-white rounded-lg">

@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { 
   X, Users, Calendar, DollarSign, LogOut, Heart, Shield, LayoutDashboard,
-  BookOpen, FileText, Receipt, FileInvoice, PieChart, TrendingUp, Target, 
+  BookOpen, FileText, Receipt, File, PieChart, TrendingUp, Target, 
   Briefcase
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -77,7 +77,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, closeSidebar }) => {
     {
       name: "الفواتير",
       to: "/accounting/invoices",
-      icon: <FileInvoice className="h-5 w-5" />,
+      icon: <File className="h-5 w-5" />,
     },
     {
       name: "الموزانة العامة",
