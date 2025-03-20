@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import DashboardLayout from "../layouts/DashboardLayout";
 import { Button } from "@/components/ui/button";
@@ -25,7 +24,7 @@ import {
   Calendar as CalendarIcon 
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import { StatCard } from "../components/dashboard/StatCard";
+import StatCard from "../components/dashboard/StatCard";
 
 const statusColors = {
   pending: "bg-yellow-100 text-yellow-800",

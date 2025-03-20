@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import DashboardLayout from "../layouts/DashboardLayout";
 import EmployeeCard from "../components/dashboard/EmployeeCard";
@@ -10,7 +9,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu";
-import { ChevronDown, Plus, Search, Filter } from "lucide-react";
+import { ChevronDown, Plus, Search, Filter, Users } from "lucide-react";
 
 const Employees = () => {
   const [searchQuery, setSearchQuery] = useState("");
