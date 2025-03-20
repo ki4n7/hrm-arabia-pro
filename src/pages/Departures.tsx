@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import DashboardLayout from "../layouts/DashboardLayout";
 import { Button } from "@/components/ui/button";
 import StatCard from "../components/dashboard/StatCard";
-import { LogOut, Plus, Clock, Users, QrCode, CheckCircle, XCircle } from "lucide-react";
+import { LogOut, Plus, Clock, Users, QrCode, CheckCircle, XCircle, Camera } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import QRCodeGenerator from "../components/dashboard/QRCodeGenerator";
 import QRCodeScanner from "../components/dashboard/QRCodeScanner";
