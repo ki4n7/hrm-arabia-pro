@@ -12,6 +12,15 @@ import Departures from "./pages/Departures";
 import HealthInsurance from "./pages/HealthInsurance";
 import SocialSecurity from "./pages/SocialSecurity";
 import NotFound from "./pages/NotFound";
+// Accounting System Pages
+import JournalEntries from "./pages/accounting/JournalEntries";
+import GeneralLedger from "./pages/accounting/GeneralLedger";
+import Vouchers from "./pages/accounting/Vouchers";
+import Invoices from "./pages/accounting/Invoices";
+import BalanceSheet from "./pages/accounting/BalanceSheet";
+import IncomeStatement from "./pages/accounting/IncomeStatement";
+import CostCenters from "./pages/accounting/CostCenters";
+import Assets from "./pages/accounting/Assets";
 
 const queryClient = new QueryClient();
 
@@ -29,6 +38,17 @@ const App = () => (
           <Route path="/departures" element={<Departures />} />
           <Route path="/health-insurance" element={<HealthInsurance />} />
           <Route path="/social-security" element={<SocialSecurity />} />
+          
+          {/* Accounting System Routes */}
+          <Route path="/accounting/journal-entries" element={<JournalEntries />} />
+          <Route path="/accounting/general-ledger" element={<GeneralLedger />} />
+          <Route path="/accounting/vouchers" element={<Vouchers />} />
+          <Route path="/accounting/invoices" element={<Invoices />} />
+          <Route path="/accounting/balance-sheet" element={<BalanceSheet />} />
+          <Route path="/accounting/income-statement" element={<IncomeStatement />} />
+          <Route path="/accounting/cost-centers" element={<CostCenters />} />
+          <Route path="/accounting/assets" element={<Assets />} />
+          
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

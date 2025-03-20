@@ -1,7 +1,11 @@
 
-import React from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-import { X, Users, Calendar, DollarSign, LogOut, Heart, Shield, LayoutDashboard } from "lucide-react";
+import { 
+  X, Users, Calendar, DollarSign, LogOut, Heart, Shield, LayoutDashboard,
+  BookOpen, FileText, Receipt, FileInvoice, PieChart, TrendingUp, Target, 
+  Briefcase
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -11,6 +15,9 @@ interface SidebarProps {
 }
 
 const Sidebar: React.FC<SidebarProps> = ({ isOpen, closeSidebar }) => {
+  // State to toggle accounting submenu
+  const [showAccountingMenu, setShowAccountingMenu] = useState(false);
+
   // Define sidebar links
   const links = [
     {
@@ -50,6 +57,50 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, closeSidebar }) => {
     },
   ];
 
+  // Define accounting links
+  const accountingLinks = [
+    {
+      name: "القيود",
+      to: "/accounting/journal-entries",
+      icon: <BookOpen className="h-5 w-5" />,
+    },
+    {
+      name: "دفتر الاستاذ العام",
+      to: "/accounting/general-ledger",
+      icon: <FileText className="h-5 w-5" />,
+    },
+    {
+      name: "السندات",
+      to: "/accounting/vouchers",
+      icon: <Receipt className="h-5 w-5" />,
+    },
+    {
+      name: "الفواتير",
+      to: "/accounting/invoices",
+      icon: <FileInvoice className="h-5 w-5" />,
+    },
+    {
+      name: "الموزانة العامة",
+      to: "/accounting/balance-sheet",
+      icon: <PieChart className="h-5 w-5" />,
+    },
+    {
+      name: "تقرير الدخل",
+      to: "/accounting/income-statement",
+      icon: <TrendingUp className="h-5 w-5" />,
+    },
+    {
+      name: "مراكز التكلفة",
+      to: "/accounting/cost-centers",
+      icon: <Target className="h-5 w-5" />,
+    },
+    {
+      name: "الاصول والصيانة والاستهلاك",
+      to: "/accounting/assets",
+      icon: <Briefcase className="h-5 w-5" />,
+    },
+  ];
+
   return (
     <>
       {/* Overlay for mobile */}
@@ -79,7 +130,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, closeSidebar }) => {
           </Button>
         </div>
         
-        <nav className="p-4 space-y-1">
+        <nav className="p-4 space-y-1 overflow-y-auto max-h-[calc(100vh-4rem)]">
           {links.map((link) => (
             <NavLink
               key={link.to}
@@ -96,6 +147,45 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, closeSidebar }) => {
               {link.name}
             </NavLink>
           ))}
+          
+          {/* Accounting Section */}
+          <div className="mt-6 pt-6 border-t border-gray-100">
+            <button
+              onClick={() => setShowAccountingMenu(!showAccountingMenu)}
+              className="flex items-center justify-between w-full px-4 py-3 text-sm text-gray-600 hover:bg-gray-50 rounded-lg"
+            >
+              <div className="flex items-center">
+                <span className="ml-3"><DollarSign className="h-5 w-5" /></span>
+                <span className="font-semibold">نظام المحاسبة</span>
+              </div>
+              <span className={`transform transition-transform ${showAccountingMenu ? 'rotate-180' : ''}`}>
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </span>
+            </button>
+            
+            {showAccountingMenu && (
+              <div className="mt-2 mr-4 pr-2 space-y-1 border-r border-gray-100">
+                {accountingLinks.map((link) => (
+                  <NavLink
+                    key={link.to}
+                    to={link.to}
+                    onClick={closeSidebar}
+                    className={({ isActive }) => cn(
+                      "flex items-center px-4 py-2 text-sm rounded-lg transition-all duration-200",
+                      isActive 
+                        ? "bg-hrm-lightBlue text-hrm-blue font-medium" 
+                        : "text-gray-600 hover:bg-gray-50"
+                    )}
+                  >
+                    <span className="ml-3">{link.icon}</span>
+                    {link.name}
+                  </NavLink>
+                ))}
+              </div>
+            )}
+          </div>
         </nav>
         
         <div className="absolute bottom-0 w-full p-4">
