@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import { 
   X, Users, Calendar, DollarSign, LogOut, Heart, Shield, LayoutDashboard,
   BookOpen, FileText, Receipt, File, PieChart, TrendingUp, Target, 
-  Briefcase, FolderKanban, ListTodo, ClipboardList, BarChart
+  Briefcase, FolderKanban, ListTodo, ClipboardList, UserPlus
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -18,14 +18,17 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, closeSidebar }) => {
   // State to toggle submenus
   const [showAccountingMenu, setShowAccountingMenu] = useState(false);
   const [showProjectsMenu, setShowProjectsMenu] = useState(false);
+  const [showHRMenu, setShowHRMenu] = useState(false);
 
-  // Define sidebar links
-  const links = [
-    {
-      name: "لوحة التحكم",
-      to: "/",
-      icon: <LayoutDashboard className="h-5 w-5" />,
-    },
+  // Define main dashboard link
+  const dashboardLink = {
+    name: "لوحة التحكم",
+    to: "/",
+    icon: <LayoutDashboard className="h-5 w-5" />,
+  };
+  
+  // Define HR links
+  const hrLinks = [
     {
       name: "الموظفين",
       to: "/employees",
@@ -156,22 +159,60 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, closeSidebar }) => {
         </div>
         
         <nav className="p-4 space-y-1 overflow-y-auto max-h-[calc(100vh-4rem)]">
-          {links.map((link) => (
-            <NavLink
-              key={link.to}
-              to={link.to}
-              onClick={closeSidebar}
-              className={({ isActive }) => cn(
-                "flex items-center px-4 py-3 text-sm rounded-lg transition-all duration-200",
-                isActive 
-                  ? "bg-hrm-lightBlue text-hrm-blue font-medium" 
-                  : "text-gray-600 hover:bg-gray-50"
-              )}
+          {/* Dashboard Link */}
+          <NavLink
+            key={dashboardLink.to}
+            to={dashboardLink.to}
+            onClick={closeSidebar}
+            className={({ isActive }) => cn(
+              "flex items-center px-4 py-3 text-sm rounded-lg transition-all duration-200",
+              isActive 
+                ? "bg-hrm-lightBlue text-hrm-blue font-medium" 
+                : "text-gray-600 hover:bg-gray-50"
+            )}
+          >
+            <span className="ml-3">{dashboardLink.icon}</span>
+            {dashboardLink.name}
+          </NavLink>
+          
+          {/* HR Section */}
+          <div className="mt-6 pt-6 border-t border-gray-100">
+            <button
+              onClick={() => setShowHRMenu(!showHRMenu)}
+              className="flex items-center justify-between w-full px-4 py-3 text-sm text-gray-600 hover:bg-gray-50 rounded-lg"
             >
-              <span className="ml-3">{link.icon}</span>
-              {link.name}
-            </NavLink>
-          ))}
+              <div className="flex items-center">
+                <span className="ml-3"><UserPlus className="h-5 w-5" /></span>
+                <span className="font-semibold">إدارة الموارد البشرية</span>
+              </div>
+              <span className={`transform transition-transform ${showHRMenu ? 'rotate-180' : ''}`}>
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </span>
+            </button>
+            
+            {showHRMenu && (
+              <div className="mt-2 mr-4 pr-2 space-y-1 border-r border-gray-100">
+                {hrLinks.map((link) => (
+                  <NavLink
+                    key={link.to}
+                    to={link.to}
+                    onClick={closeSidebar}
+                    className={({ isActive }) => cn(
+                      "flex items-center px-4 py-2 text-sm rounded-lg transition-all duration-200",
+                      isActive 
+                        ? "bg-hrm-lightBlue text-hrm-blue font-medium" 
+                        : "text-gray-600 hover:bg-gray-50"
+                    )}
+                  >
+                    <span className="ml-3">{link.icon}</span>
+                    {link.name}
+                  </NavLink>
+                ))}
+              </div>
+            )}
+          </div>
           
           {/* Project Management Section */}
           <div className="mt-6 pt-6 border-t border-gray-100">
