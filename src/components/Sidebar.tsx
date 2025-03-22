@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import { 
   X, Users, Calendar, DollarSign, LogOut, Heart, Shield, LayoutDashboard,
   BookOpen, FileText, Receipt, File, PieChart, TrendingUp, Target, 
-  Briefcase, FolderKanban, ListTodo, ClipboardList, UserPlus
+  Briefcase, FolderKanban, ListTodo, ClipboardList, UserPlus, Puzzle
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -25,6 +25,13 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, closeSidebar }) => {
     name: "لوحة التحكم",
     to: "/",
     icon: <LayoutDashboard className="h-5 w-5" />,
+  };
+  
+  // Define Elements link
+  const elementsLink = {
+    name: "العناصر",
+    to: "/elements",
+    icon: <Puzzle className="h-5 w-5" />,
   };
   
   // Define HR links
@@ -173,6 +180,22 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, closeSidebar }) => {
           >
             <span className="ml-3">{dashboardLink.icon}</span>
             {dashboardLink.name}
+          </NavLink>
+          
+          {/* Elements Link */}
+          <NavLink
+            key={elementsLink.to}
+            to={elementsLink.to}
+            onClick={closeSidebar}
+            className={({ isActive }) => cn(
+              "flex items-center px-4 py-3 text-sm rounded-lg transition-all duration-200",
+              isActive 
+                ? "bg-hrm-lightBlue text-hrm-blue font-medium" 
+                : "text-gray-600 hover:bg-gray-50"
+            )}
+          >
+            <span className="ml-3">{elementsLink.icon}</span>
+            {elementsLink.name}
           </NavLink>
           
           {/* HR Section */}
