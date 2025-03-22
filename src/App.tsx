@@ -16,6 +16,7 @@ import ProfileSettings from "./pages/ProfileSettings";
 import Settings from "./pages/Settings";
 import Notifications from "./pages/Notifications";
 import NotFound from "./pages/NotFound";
+import Elements from "./pages/Elements"; // Added Elements page import
 // Accounting System Pages
 import JournalEntries from "./pages/accounting/JournalEntries";
 import GeneralLedger from "./pages/accounting/GeneralLedger";
@@ -49,6 +50,7 @@ const App = () => (
           <Route path="/departures" element={<Departures />} />
           <Route path="/health-insurance" element={<HealthInsurance />} />
           <Route path="/social-security" element={<SocialSecurity />} />
+          <Route path="/elements" element={<Elements />} /> {/* Added Elements page route */}
           
           {/* User Profile & Settings Routes */}
           <Route path="/profile" element={<Profile />} />
