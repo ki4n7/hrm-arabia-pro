@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import { 
   X, Users, Calendar, DollarSign, LogOut, Heart, Shield, LayoutDashboard,
   BookOpen, FileText, Receipt, File, PieChart, TrendingUp, Target, 
-  Briefcase
+  Briefcase, FolderKanban, ListTodo, ClipboardList, BarChart
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -15,8 +15,9 @@ interface SidebarProps {
 }
 
 const Sidebar: React.FC<SidebarProps> = ({ isOpen, closeSidebar }) => {
-  // State to toggle accounting submenu
+  // State to toggle submenus
   const [showAccountingMenu, setShowAccountingMenu] = useState(false);
+  const [showProjectsMenu, setShowProjectsMenu] = useState(false);
 
   // Define sidebar links
   const links = [
@@ -100,6 +101,30 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, closeSidebar }) => {
       icon: <Briefcase className="h-5 w-5" />,
     },
   ];
+  
+  // Define project management links
+  const projectLinks = [
+    {
+      name: "المشاريع",
+      to: "/projects",
+      icon: <FolderKanban className="h-5 w-5" />,
+    },
+    {
+      name: "إنشاء مشروع جديد",
+      to: "/projects/create",
+      icon: <Briefcase className="h-5 w-5" />,
+    },
+    {
+      name: "المهام",
+      to: "/tasks",
+      icon: <ListTodo className="h-5 w-5" />,
+    },
+    {
+      name: "لوحة المهام",
+      to: "/task-board",
+      icon: <ClipboardList className="h-5 w-5" />,
+    }
+  ];
 
   return (
     <>
@@ -147,6 +172,45 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, closeSidebar }) => {
               {link.name}
             </NavLink>
           ))}
+          
+          {/* Project Management Section */}
+          <div className="mt-6 pt-6 border-t border-gray-100">
+            <button
+              onClick={() => setShowProjectsMenu(!showProjectsMenu)}
+              className="flex items-center justify-between w-full px-4 py-3 text-sm text-gray-600 hover:bg-gray-50 rounded-lg"
+            >
+              <div className="flex items-center">
+                <span className="ml-3"><FolderKanban className="h-5 w-5" /></span>
+                <span className="font-semibold">إدارة المشاريع والمهام</span>
+              </div>
+              <span className={`transform transition-transform ${showProjectsMenu ? 'rotate-180' : ''}`}>
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </span>
+            </button>
+            
+            {showProjectsMenu && (
+              <div className="mt-2 mr-4 pr-2 space-y-1 border-r border-gray-100">
+                {projectLinks.map((link) => (
+                  <NavLink
+                    key={link.to}
+                    to={link.to}
+                    onClick={closeSidebar}
+                    className={({ isActive }) => cn(
+                      "flex items-center px-4 py-2 text-sm rounded-lg transition-all duration-200",
+                      isActive 
+                        ? "bg-hrm-lightBlue text-hrm-blue font-medium" 
+                        : "text-gray-600 hover:bg-gray-50"
+                    )}
+                  >
+                    <span className="ml-3">{link.icon}</span>
+                    {link.name}
+                  </NavLink>
+                ))}
+              </div>
+            )}
+          </div>
           
           {/* Accounting Section */}
           <div className="mt-6 pt-6 border-t border-gray-100">

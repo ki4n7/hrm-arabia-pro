@@ -25,6 +25,13 @@ import BalanceSheet from "./pages/accounting/BalanceSheet";
 import IncomeStatement from "./pages/accounting/IncomeStatement";
 import CostCenters from "./pages/accounting/CostCenters";
 import Assets from "./pages/accounting/Assets";
+// Project Management Pages
+import Projects from "./pages/projects/Projects";
+import ProjectDetails from "./pages/projects/ProjectDetails";
+import CreateProject from "./pages/projects/CreateProject";
+import Tasks from "./pages/projects/Tasks";
+import TaskDetails from "./pages/projects/TaskDetails";
+import TaskBoard from "./pages/projects/TaskBoard";
 
 const queryClient = new QueryClient();
 
@@ -58,6 +65,14 @@ const App = () => (
           <Route path="/accounting/income-statement" element={<IncomeStatement />} />
           <Route path="/accounting/cost-centers" element={<CostCenters />} />
           <Route path="/accounting/assets" element={<Assets />} />
+          
+          {/* Project Management Routes */}
+          <Route path="/projects" element={<Projects />} />
+          <Route path="/projects/create" element={<CreateProject />} />
+          <Route path="/projects/:id" element={<ProjectDetails />} />
+          <Route path="/tasks" element={<Tasks />} />
+          <Route path="/tasks/:id" element={<TaskDetails />} />
+          <Route path="/task-board" element={<TaskBoard />} />
           
           <Route path="*" element={<NotFound />} />
         </Routes>
