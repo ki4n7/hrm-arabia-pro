@@ -1,26 +1,51 @@
+
 import * as React from "react"
 
 import { cn } from "@/lib/utils"
 
-const Table = React.forwardRef<
-  HTMLTableElement,
-  React.HTMLAttributes<HTMLTableElement>
->(({ className, ...props }, ref) => (
-  <div className="relative w-full overflow-auto">
-    <table
-      ref={ref}
-      className={cn("w-full caption-bottom text-sm", className)}
-      {...props}
-    />
-  </div>
-))
+interface TableProps extends React.HTMLAttributes<HTMLTableElement> {
+  variant?: "default" | "striped" | "bordered" | "compact" | "hover" | "card";
+}
+
+const Table = React.forwardRef<HTMLTableElement, TableProps>(
+  ({ className, variant = "default", ...props }, ref) => {
+    const baseClass = "w-full caption-bottom text-sm";
+    
+    const variantClasses = {
+      default: "",
+      striped: "[&_tbody_tr:nth-child(even)]:bg-muted/50",
+      bordered: "[&_th]:border [&_td]:border",
+      compact: "[&_th]:p-2 [&_td]:p-2",
+      hover: "[&_tbody_tr]:hover:bg-muted/60 [&_tbody_tr]:transition-colors",
+      card: "rounded-lg border overflow-hidden [&_thead_th:first-child]:rounded-tl-lg [&_thead_th:last-child]:rounded-tr-lg",
+    };
+
+    return (
+      <div className="relative w-full overflow-auto">
+        <table
+          ref={ref}
+          className={cn(baseClass, variantClasses[variant], className)}
+          {...props}
+        />
+      </div>
+    );
+  }
+);
 Table.displayName = "Table"
 
 const TableHeader = React.forwardRef<
   HTMLTableSectionElement,
-  React.HTMLAttributes<HTMLTableSectionElement>
->(({ className, ...props }, ref) => (
-  <thead ref={ref} className={cn("[&_tr]:border-b", className)} {...props} />
+  React.HTMLAttributes<HTMLTableSectionElement> & { sticky?: boolean }
+>(({ className, sticky = false, ...props }, ref) => (
+  <thead 
+    ref={ref} 
+    className={cn(
+      "[&_tr]:border-b", 
+      sticky && "sticky top-0 bg-background z-10",
+      className
+    )} 
+    {...props} 
+  />
 ))
 TableHeader.displayName = "TableHeader"
 
@@ -53,12 +78,13 @@ TableFooter.displayName = "TableFooter"
 
 const TableRow = React.forwardRef<
   HTMLTableRowElement,
-  React.HTMLAttributes<HTMLTableRowElement>
->(({ className, ...props }, ref) => (
+  React.HTMLAttributes<HTMLTableRowElement> & { inactive?: boolean }
+>(({ className, inactive = false, ...props }, ref) => (
   <tr
     ref={ref}
     className={cn(
       "border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted",
+      inactive && "opacity-60",
       className
     )}
     {...props}
