@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import DashboardLayout from "@/layouts/DashboardLayout";
@@ -119,9 +120,396 @@ const projectsData = [
     expectedROI: "11.3%",
     riskLevel: "منخفض",
     sector: "عقارات سكنية",
-    // ...similar data structure as for project 1
+    milestones: [
+      { title: "شراء الأرض", completionDate: "2023-09-01", status: "مكتمل", progress: 100 },
+      { title: "الحصول على التراخيص", completionDate: "2023-10-15", status: "مكتمل", progress: 100 },
+      { title: "أعمال الحفر والأساسات", completionDate: "2024-01-30", status: "مكتمل", progress: 100 },
+      { title: "البناء الهيكلي", completionDate: "2024-08-30", status: "قيد التنفيذ", progress: 40 },
+      { title: "التشطيبات الداخلية", completionDate: "2025-01-15", status: "مخطط", progress: 0 },
+      { title: "التسليم النهائي", completionDate: "2025-03-15", status: "مخطط", progress: 0 }
+    ],
+    investorsDetails: [
+      { id: 1, name: "أحمد الزهراني", investmentAmount: 1800000, joinDate: "2023-08-05", share: "21.2%" },
+      { id: 2, name: "هند المالكي", investmentAmount: 1500000, joinDate: "2023-08-10", share: "17.6%" },
+      { id: 3, name: "سلطان القرشي", investmentAmount: 1200000, joinDate: "2023-08-15", share: "14.1%" },
+      { id: 4, name: "ريم الحربي", investmentAmount: 1500000, joinDate: "2023-08-20", share: "17.6%" },
+      { id: 5, name: "ماجد العتيبي", investmentAmount: 1300000, joinDate: "2023-08-25", share: "15.3%" },
+      { id: 6, name: "نوف السليم", investmentAmount: 1200000, joinDate: "2023-08-30", share: "14.1%" }
+    ],
+    financialData: {
+      quarterlyReturns: [
+        { quarter: "Q3 2023", amount: 0, status: "فترة بناء" },
+        { quarter: "Q4 2023", amount: 0, status: "فترة بناء" },
+        { quarter: "Q1 2024", amount: 0, status: "فترة بناء" },
+        { quarter: "Q2 2024", amount: 0, status: "فترة بناء" },
+        { quarter: "Q3 2024", amount: 0, status: "فترة بناء" },
+        { quarter: "Q4 2024", amount: 180000, status: "أول عائد" },
+        { quarter: "Q1 2025", amount: 310000, status: "نشط" }
+      ],
+      expenses: [
+        { category: "تكلفة الأرض", amount: 3000000, percentage: 35.3 },
+        { category: "تكاليف البناء", amount: 4200000, percentage: 49.4 },
+        { category: "التصاميم والاستشارات", amount: 500000, percentage: 5.9 },
+        { category: "التراخيص والرسوم", amount: 350000, percentage: 4.1 },
+        { category: "المرافق والأنظمة", amount: 300000, percentage: 3.5 },
+        { category: "أخرى", amount: 150000, percentage: 1.8 }
+      ],
+      monthlyReports: [
+        { month: "يناير 2024", completionAdded: "6%", expensesAmount: 480000, notes: "بدء العمل في المبنى الأول" },
+        { month: "فبراير 2024", completionAdded: "5%", expensesAmount: 420000, notes: "تم استكمال الأساسات للمباني المتبقية" },
+        { month: "مارس 2024", completionAdded: "7%", expensesAmount: 530000, notes: "بدء العمل في البنية التحتية" },
+        { month: "أبريل 2024", completionAdded: "5%", expensesAmount: 410000, notes: "استكمال المبنى الأول حتى الطابق الثالث" }
+      ]
+    },
+    updates: [
+      { date: "2024-04-05", title: "استكمال المبنى الأول حتى الطابق الثالث", description: "تم استكمال أعمال البناء للمبنى الأول حتى الطابق الثالث وفق الخطة الزمنية." },
+      { date: "2024-03-15", title: "بدء أعمال البنية التحتية", description: "تم البدء في تنفيذ أعمال البنية التحتية للمجمع بما في ذلك شبكات المياه والكهرباء." },
+      { date: "2024-02-20", title: "اكتمال الأساسات", description: "تم الانتهاء من أعمال الأساسات لجميع مباني المجمع." },
+      { date: "2024-01-10", title: "توريد مواد البناء", description: "تم توريد الدفعة الأولى من مواد البناء وتخزينها في الموقع." }
+    ],
+    riskAnalysis: {
+      marketRisk: { level: "منخفض", description: "موقع مميز على الواجهة البحرية" },
+      operationalRisk: { level: "منخفض", description: "فريق بناء ذو خبرة عالية" },
+      financialRisk: { level: "منخفض", description: "تمويل مضمون بالكامل" },
+      regulatoryRisk: { level: "منخفض", description: "جميع التصاريح مكتملة" }
+    }
   },
-  // ...other projects data would follow the same pattern
+  // Adding other projects with full data structure
+  {
+    id: 3,
+    name: "مركز التسوق الجديد",
+    location: "الدمام - حي الفيصلية",
+    description: "مركز تسوق حديث يضم أكثر من 150 متجراً ومساحات ترفيهية متنوعة ومطاعم عالمية في موقع استراتيجي بالدمام.",
+    totalInvestment: 22000000,
+    returnRate: 15.2,
+    trending: "up",
+    progress: 25,
+    investors: 12,
+    status: "قيد التنفيذ",
+    startDate: "2024-01-10",
+    endDate: "2026-07-25",
+    manager: "فهد الشمري",
+    totalArea: "25,000 متر مربع",
+    expectedROI: "18.5%",
+    riskLevel: "متوسط",
+    sector: "مراكز تجارية",
+    milestones: [
+      { title: "شراء الأرض", completionDate: "2024-01-10", status: "مكتمل", progress: 100 },
+      { title: "التصاميم الهندسية", completionDate: "2024-03-15", status: "مكتمل", progress: 100 },
+      { title: "الحصول على التراخيص", completionDate: "2024-04-30", status: "قيد التنفيذ", progress: 80 },
+      { title: "أعمال الحفر", completionDate: "2024-06-30", status: "مخطط", progress: 0 },
+      { title: "البناء الهيكلي", completionDate: "2025-08-30", status: "مخطط", progress: 0 },
+      { title: "التشطيبات والديكورات", completionDate: "2026-05-30", status: "مخطط", progress: 0 },
+      { title: "التسليم النهائي", completionDate: "2026-07-25", status: "مخطط", progress: 0 }
+    ],
+    investorsDetails: [
+      { id: 1, name: "شركة البلاد للاستثمار", investmentAmount: 5000000, joinDate: "2023-12-01", share: "22.7%" },
+      { id: 2, name: "سعود المطيري", investmentAmount: 2500000, joinDate: "2023-12-05", share: "11.4%" },
+      { id: 3, name: "منيرة الحميد", investmentAmount: 1800000, joinDate: "2023-12-10", share: "8.2%" },
+      { id: 4, name: "عبدالرحمن الزهراني", investmentAmount: 1500000, joinDate: "2023-12-15", share: "6.8%" },
+      { id: 5, name: "شركة نماء العقارية", investmentAmount: 4000000, joinDate: "2023-12-20", share: "18.2%" },
+      { id: 6, name: "تركي العتيبي", investmentAmount: 1200000, joinDate: "2023-12-25", share: "5.5%" },
+      { id: 7, name: "هناء الجبر", investmentAmount: 1000000, joinDate: "2024-01-01", share: "4.5%" },
+      { id: 8, name: "شركة آفاق للاستثمار", investmentAmount: 2000000, joinDate: "2024-01-05", share: "9.1%" },
+      { id: 9, name: "محمد الغامدي", investmentAmount: 1000000, joinDate: "2024-01-10", share: "4.5%" },
+      { id: 10, name: "نوال السبيعي", investmentAmount: 800000, joinDate: "2024-01-15", share: "3.6%" },
+      { id: 11, name: "صندوق الاستثمارات الخليجية", investmentAmount: 800000, joinDate: "2024-01-20", share: "3.6%" },
+      { id: 12, name: "سلمان القحطاني", investmentAmount: 400000, joinDate: "2024-01-25", share: "1.8%" }
+    ],
+    financialData: {
+      quarterlyReturns: [
+        { quarter: "Q1 2024", amount: 0, status: "فترة بناء" },
+        { quarter: "Q2 2024", amount: 0, status: "فترة بناء" },
+        { quarter: "Q3 2024", amount: 0, status: "فترة بناء" },
+        { quarter: "Q4 2024", amount: 0, status: "فترة بناء" },
+        { quarter: "Q1 2025", amount: 0, status: "فترة بناء" },
+        { quarter: "Q2 2025", amount: 0, status: "فترة بناء" },
+        { quarter: "Q3 2025", amount: 0, status: "فترة بناء" },
+        { quarter: "Q4 2025", amount: 0, status: "فترة بناء" },
+        { quarter: "Q1 2026", amount: 0, status: "فترة بناء" },
+        { quarter: "Q2 2026", amount: 0, status: "فترة بناء" },
+        { quarter: "Q3 2026", amount: 750000, status: "أول عائد" },
+        { quarter: "Q4 2026", amount: 850000, status: "نشط" }
+      ],
+      expenses: [
+        { category: "تكلفة الأرض", amount: 6000000, percentage: 27.3 },
+        { category: "تكاليف البناء", amount: 10500000, percentage: 47.7 },
+        { category: "التصاميم والاستشارات", amount: 1200000, percentage: 5.5 },
+        { category: "التراخيص والرسوم", amount: 800000, percentage: 3.6 },
+        { category: "المرافق والأنظمة", amount: 2500000, percentage: 11.4 },
+        { category: "التسويق والإطلاق", amount: 500000, percentage: 2.3 },
+        { category: "أخرى", amount: 500000, percentage: 2.3 }
+      ],
+      monthlyReports: [
+        { month: "يناير 2024", completionAdded: "2%", expensesAmount: 6000000, notes: "تم شراء الأرض" },
+        { month: "فبراير 2024", completionAdded: "3%", expensesAmount: 500000, notes: "بدء أعمال التصميم الهندسي" },
+        { month: "مارس 2024", completionAdded: "5%", expensesAmount: 700000, notes: "اكتمال التصاميم الهندسية" },
+        { month: "أبريل 2024", completionAdded: "3%", expensesAmount: 400000, notes: "تقديم طلبات التراخيص للجهات المختصة" }
+      ]
+    },
+    updates: [
+      { date: "2024-04-15", title: "تقديم طلبات التراخيص", description: "تم تقديم جميع المستندات المطلوبة للحصول على التراخيص اللازمة من الجهات المختصة." },
+      { date: "2024-03-25", title: "اكتمال التصاميم الهندسية", description: "تم الانتهاء من إعداد جميع التصاميم الهندسية والمعمارية للمشروع." },
+      { date: "2024-02-10", title: "توقيع عقد مع شركة الاستشارات الهندسية", description: "تم التعاقد مع شركة استشارات هندسية مرموقة لإعداد التصاميم." },
+      { date: "2024-01-15", title: "اكتمال شراء الأرض", description: "تم الانتهاء من إجراءات شراء الأرض وتسجيلها رسمياً باسم الشركة." }
+    ],
+    riskAnalysis: {
+      marketRisk: { level: "منخفض", description: "طلب مرتفع على المراكز التجارية في المنطقة" },
+      operationalRisk: { level: "متوسط", description: "حجم المشروع كبير ويتطلب إدارة دقيقة" },
+      financialRisk: { level: "منخفض", description: "تمويل مضمون من المستثمرين والبنوك" },
+      regulatoryRisk: { level: "متوسط", description: "بعض التحديات في الحصول على بعض التصاريح" }
+    }
+  },
+  {
+    id: 4,
+    name: "مشروع الطاقة الشمسية",
+    location: "تبوك - المنطقة الصناعية",
+    description: "مشروع لتوليد الطاقة الشمسية بقدرة 50 ميجاوات، يهدف لتزويد المنطقة الصناعية بالطاقة النظيفة والمتجددة.",
+    totalInvestment: 35000000,
+    returnRate: 8.5,
+    trending: "down",
+    progress: 15,
+    investors: 14,
+    status: "مرحلة التخطيط",
+    startDate: "2024-04-01",
+    endDate: "2027-06-30",
+    manager: "د. محمد العوفي",
+    totalArea: "120,000 متر مربع",
+    expectedROI: "10.2%",
+    riskLevel: "مرتفع",
+    sector: "الطاقة المتجددة",
+    milestones: [
+      { title: "دراسة الجدوى", completionDate: "2024-04-01", status: "مكتمل", progress: 100 },
+      { title: "استئجار الأرض", completionDate: "2024-06-15", status: "قيد التنفيذ", progress: 80 },
+      { title: "الحصول على التراخيص", completionDate: "2024-09-30", status: "قيد التنفيذ", progress: 40 },
+      { title: "توريد الألواح الشمسية", completionDate: "2025-03-30", status: "مخطط", progress: 0 },
+      { title: "تركيب محطة التحويل", completionDate: "2025-08-30", status: "مخطط", progress: 0 },
+      { title: "تركيب الألواح الشمسية", completionDate: "2026-12-30", status: "مخطط", progress: 0 },
+      { title: "الاختبار والتشغيل", completionDate: "2027-06-30", status: "مخطط", progress: 0 }
+    ],
+    investorsDetails: [
+      { id: 1, name: "صندوق الاستثمارات العامة", investmentAmount: 10000000, joinDate: "2024-02-01", share: "28.6%" },
+      { id: 2, name: "شركة الطاقة السعودية", investmentAmount: 5000000, joinDate: "2024-02-10", share: "14.3%" },
+      { id: 3, name: "بنك التنمية الصناعية", investmentAmount: 4500000, joinDate: "2024-02-15", share: "12.9%" },
+      { id: 4, name: "شركة المستقبل للطاقة", investmentAmount: 3000000, joinDate: "2024-02-20", share: "8.6%" },
+      { id: 5, name: "عبدالله الراجحي", investmentAmount: 2000000, joinDate: "2024-02-25", share: "5.7%" },
+      { id: 6, name: "سعود العنزي", investmentAmount: 1500000, joinDate: "2024-03-01", share: "4.3%" },
+      { id: 7, name: "شركة البحر الأحمر للتطوير", investmentAmount: 1500000, joinDate: "2024-03-05", share: "4.3%" },
+      { id: 8, name: "صالح الشهراني", investmentAmount: 1000000, joinDate: "2024-03-10", share: "2.9%" },
+      { id: 9, name: "نورة الزهراني", investmentAmount: 1000000, joinDate: "2024-03-15", share: "2.9%" },
+      { id: 10, name: "شركة الخليج للاستثمار", investmentAmount: 1500000, joinDate: "2024-03-20", share: "4.3%" },
+      { id: 11, name: "محمد السبيعي", investmentAmount: 1000000, joinDate: "2024-03-25", share: "2.9%" },
+      { id: 12, name: "شركة تبوك للتنمية", investmentAmount: 1500000, joinDate: "2024-03-30", share: "4.3%" },
+      { id: 13, name: "خالد الحربي", investmentAmount: 750000, joinDate: "2024-04-05", share: "2.1%" },
+      { id: 14, name: "منيرة العتيبي", investmentAmount: 750000, joinDate: "2024-04-10", share: "2.1%" }
+    ],
+    financialData: {
+      quarterlyReturns: [
+        { quarter: "Q2 2024", amount: 0, status: "فترة بناء" },
+        { quarter: "Q3 2024", amount: 0, status: "فترة بناء" },
+        { quarter: "Q4 2024", amount: 0, status: "فترة بناء" },
+        { quarter: "Q1 2025", amount: 0, status: "فترة بناء" },
+        { quarter: "Q2 2025", amount: 0, status: "فترة بناء" },
+        { quarter: "Q3 2025", amount: 0, status: "فترة بناء" },
+        { quarter: "Q4 2025", amount: 0, status: "فترة بناء" },
+        { quarter: "Q1 2026", amount: 0, status: "فترة بناء" },
+        { quarter: "Q2 2026", amount: 0, status: "فترة بناء" },
+        { quarter: "Q3 2026", amount: 0, status: "فترة بناء" },
+        { quarter: "Q4 2026", amount: 0, status: "فترة بناء" },
+        { quarter: "Q1 2027", amount: 0, status: "فترة بناء" },
+        { quarter: "Q2 2027", amount: 0, status: "فترة بناء" },
+        { quarter: "Q3 2027", amount: 700000, status: "أول عائد" },
+        { quarter: "Q4 2027", amount: 750000, status: "نشط" }
+      ],
+      expenses: [
+        { category: "استئجار الأرض", amount: 3000000, percentage: 8.6 },
+        { category: "شراء الألواح الشمسية", amount: 18000000, percentage: 51.4 },
+        { category: "معدات التحويل والتخزين", amount: 8000000, percentage: 22.9 },
+        { category: "أعمال الهندسة والتركيب", amount: 4000000, percentage: 11.4 },
+        { category: "التراخيص والرسوم", amount: 1000000, percentage: 2.9 },
+        { category: "أخرى", amount: 1000000, percentage: 2.9 }
+      ],
+      monthlyReports: [
+        { month: "أبريل 2024", completionAdded: "3%", expensesAmount: 500000, notes: "اكتمال دراسة الجدوى وبدء التفاوض على استئجار الأرض" },
+        { month: "مايو 2024", completionAdded: "4%", expensesAmount: 800000, notes: "استمرار المفاوضات مع الجهات المختصة" },
+        { month: "يونيو 2024", completionAdded: "5%", expensesAmount: 1500000, notes: "توقيع العقد المبدئي لاستئجار الأرض" },
+        { month: "يوليو 2024", completionAdded: "3%", expensesAmount: 600000, notes: "بدء إجراءات التراخيص البيئية" }
+      ]
+    },
+    updates: [
+      { date: "2024-04-20", title: "اكتمال دراسة الجدوى", description: "تم الانتهاء من دراسة الجدوى الاقتصادية والفنية للمشروع وتأكيد جدواه." },
+      { date: "2024-05-15", title: "التفاوض على استئجار الأرض", description: "بدأت المفاوضات مع مدينة تبوك الصناعية لاستئجار الموقع المناسب للمشروع." },
+      { date: "2024-06-10", title: "توقيع العقد المبدئي", description: "تم توقيع العقد المبدئي لاستئجار الأرض لمدة 30 عامًا." },
+      { date: "2024-07-05", title: "تقديم طلبات التراخيص البيئية", description: "تم تقديم الدراسات البيئية والطلبات اللازمة للحصول على التراخيص البيئية." }
+    ],
+    riskAnalysis: {
+      marketRisk: { level: "متوسط", description: "تذبذب أسعار الكهرباء وسياسات الدعم" },
+      operationalRisk: { level: "مرتفع", description: "تحديات تقنية في تنفيذ مشروع بهذا الحجم" },
+      financialRisk: { level: "متوسط", description: "ارتفاع التكلفة الأولية وطول فترة الاسترداد" },
+      regulatoryRisk: { level: "مرتفع", description: "تغيرات محتملة في التشريعات المنظمة لقطاع الطاقة" }
+    }
+  },
+  {
+    id: 5,
+    name: "مجمع المكاتب الذكية",
+    location: "الرياض - حي الملقا",
+    description: "مجمع مكاتب ذكية يضم مساحات عمل مرنة ومجهزة بأحدث التقنيات، مصمم لتلبية احتياجات الشركات الناشئة والمؤسسات الصغيرة والمتوسطة.",
+    totalInvestment: 18000000,
+    returnRate: 11.3,
+    trending: "up",
+    progress: 80,
+    investors: 9,
+    status: "قيد التنفيذ",
+    startDate: "2022-11-20",
+    endDate: "2024-10-15",
+    manager: "سلطان الغامدي",
+    totalArea: "5,200 متر مربع",
+    expectedROI: "13.5%",
+    riskLevel: "منخفض",
+    sector: "عقارات تجارية",
+    milestones: [
+      { title: "شراء المبنى", completionDate: "2022-11-20", status: "مكتمل", progress: 100 },
+      { title: "التصميم الداخلي", completionDate: "2023-02-15", status: "مكتمل", progress: 100 },
+      { title: "أعمال الهدم والإزالة", completionDate: "2023-05-10", status: "مكتمل", progress: 100 },
+      { title: "إعادة الإنشاء والتجديد", completionDate: "2023-12-30", status: "مكتمل", progress: 100 },
+      { title: "تركيب الأنظمة الذكية", completionDate: "2024-06-15", status: "قيد التنفيذ", progress: 75 },
+      { title: "التشطيبات النهائية", completionDate: "2024-09-15", status: "مخطط", progress: 20 },
+      { title: "التسليم النهائي", completionDate: "2024-10-15", status: "مخطط", progress: 0 }
+    ],
+    investorsDetails: [
+      { id: 1, name: "شركة المساحات الذكية", investmentAmount: 5000000, joinDate: "2022-10-01", share: "27.8%" },
+      { id: 2, name: "خالد القحطاني", investmentAmount: 3000000, joinDate: "2022-10-05", share: "16.7%" },
+      { id: 3, name: "صندوق دعم المشاريع الصغيرة", investmentAmount: 2500000, joinDate: "2022-10-10", share: "13.9%" },
+      { id: 4, name: "سارة الزهراني", investmentAmount: 1500000, joinDate: "2022-10-15", share: "8.3%" },
+      { id: 5, name: "محمد العتيبي", investmentAmount: 1500000, joinDate: "2022-10-20", share: "8.3%" },
+      { id: 6, name: "شركة الرياض للتطوير", investmentAmount: 2000000, joinDate: "2022-10-25", share: "11.1%" },
+      { id: 7, name: "نوف الدوسري", investmentAmount: 1000000, joinDate: "2022-11-01", share: "5.6%" },
+      { id: 8, name: "عبدالعزيز الشمري", investmentAmount: 1000000, joinDate: "2022-11-05", share: "5.6%" },
+      { id: 9, name: "شركة التقنية المتقدمة", investmentAmount: 500000, joinDate: "2022-11-10", share: "2.8%" }
+    ],
+    financialData: {
+      quarterlyReturns: [
+        { quarter: "Q4 2022", amount: 0, status: "فترة بناء" },
+        { quarter: "Q1 2023", amount: 0, status: "فترة بناء" },
+        { quarter: "Q2 2023", amount: 0, status: "فترة بناء" },
+        { quarter: "Q3 2023", amount: 0, status: "فترة بناء" },
+        { quarter: "Q4 2023", amount: 0, status: "فترة بناء" },
+        { quarter: "Q1 2024", amount: 0, status: "فترة بناء" },
+        { quarter: "Q2 2024", amount: 0, status: "فترة بناء" },
+        { quarter: "Q3 2024", amount: 0, status: "فترة بناء" },
+        { quarter: "Q4 2024", amount: 450000, status: "أول عائد" },
+        { quarter: "Q1 2025", amount: 520000, status: "نشط" }
+      ],
+      expenses: [
+        { category: "شراء المبنى", amount: 9000000, percentage: 50.0 },
+        { category: "أعمال التجديد", amount: 5500000, percentage: 30.6 },
+        { category: "الأنظمة الذكية", amount: 2500000, percentage: 13.9 },
+        { category: "التصاميم والاستشارات", amount: 500000, percentage: 2.8 },
+        { category: "التراخيص والرسوم", amount: 200000, percentage: 1.1 },
+        { category: "أخرى", amount: 300000, percentage: 1.7 }
+      ],
+      monthlyReports: [
+        { month: "يناير 2024", completionAdded: "3%", expensesAmount: 400000, notes: "بدء تركيب الأنظمة الذكية" },
+        { month: "فبراير 2024", completionAdded: "5%", expensesAmount: 650000, notes: "استكمال الأنظمة الأمنية ونظام التحكم البيئي" },
+        { month: "مارس 2024", completionAdded: "6%", expensesAmount: 750000, notes: "تركيب نظام إدارة المبنى الذكي" },
+        { month: "أبريل 2024", completionAdded: "4%", expensesAmount: 550000, notes: "تركيب شبكات الاتصال والإنترنت عالي السرعة" }
+      ]
+    },
+    updates: [
+      { date: "2024-04-15", title: "اكتمال تركيب شبكات الاتصال", description: "تم الانتهاء من تركيب شبكات الألياف البصرية والإنترنت عالي السرعة في جميع أنحاء المبنى." },
+      { date: "2024-03-20", title: "تركيب نظام إدارة المبنى", description: "تم تركيب وتشغيل نظام إدارة المبنى الذكي الذي يتحكم في الإضاءة والتكييف والأمان." },
+      { date: "2024-02-10", title: "استكمال الأنظمة الأمنية", description: "تم تركيب كاميرات المراقبة وأنظمة التحكم في الدخول في جميع المداخل والمناطق الحساسة." },
+      { date: "2024-01-05", title: "بدء تركيب الأنظمة الذكية", description: "بدأ العمل في تركيب الأنظمة الذكية بعد اكتمال أعمال التجديد الرئيسية." }
+    ],
+    riskAnalysis: {
+      marketRisk: { level: "منخفض", description: "طلب متزايد على مساحات العمل المرنة" },
+      operationalRisk: { level: "منخفض", description: "فريق إدارة ذو خبرة في تشغيل المساحات المكتبية" },
+      financialRisk: { level: "منخفض", description: "تكلفة مناسبة مع عوائد جيدة متوقعة" },
+      regulatoryRisk: { level: "منخفض", description: "توافق كامل مع اللوائح التنظيمية للمباني التجارية" }
+    }
+  },
+  {
+    id: 6,
+    name: "منتجع سياحي",
+    location: "أبها - الهضبة الغربية",
+    description: "منتجع سياحي فاخر في مرتفعات أبها، يتضمن 45 وحدة سكنية ومرافق ترفيهية متكاملة ومطاعم فاخرة ومناظر طبيعية خلابة.",
+    totalInvestment: 42000000,
+    returnRate: 16.8,
+    trending: "up",
+    progress: 5,
+    investors: 18,
+    status: "مرحلة التخطيط",
+    startDate: "2024-06-15",
+    endDate: "2027-12-31",
+    manager: "ماجد الشهري",
+    totalArea: "60,000 متر مربع",
+    expectedROI: "19.5%",
+    riskLevel: "متوسط",
+    sector: "السياحة والضيافة",
+    milestones: [
+      { title: "دراسة الجدوى", completionDate: "2024-06-15", status: "قيد التنفيذ", progress: 85 },
+      { title: "شراء الأرض", completionDate: "2024-09-30", status: "مخطط", progress: 0 },
+      { title: "التصاميم والمخططات", completionDate: "2025-03-31", status: "مخطط", progress: 0 },
+      { title: "الحصول على التراخيص", completionDate: "2025-06-30", status: "مخطط", progress: 0 },
+      { title: "أعمال البنية التحتية", completionDate: "2026-02-28", status: "مخطط", progress: 0 },
+      { title: "البناء والإنشاء", completionDate: "2027-06-30", status: "مخطط", progress: 0 },
+      { title: "التأثيث والتجهيز", completionDate: "2027-11-30", status: "مخطط", progress: 0 },
+      { title: "الافتتاح", completionDate: "2027-12-31", status: "مخطط", progress: 0 }
+    ],
+    investorsDetails: [
+      { id: 1, name: "شركة السياحة السعودية", investmentAmount: 10000000, joinDate: "2024-05-01", share: "23.8%" },
+      { id: 2, name: "صندوق التنمية السياحي", investmentAmount: 8000000, joinDate: "2024-05-05", share: "19.0%" },
+      { id: 3, name: "خالد الفيصل", investmentAmount: 3000000, joinDate: "2024-05-10", share: "7.1%" },
+      { id: 4, name: "شركة أبها للاستثمار", investmentAmount: 2500000, joinDate: "2024-05-15", share: "6.0%" },
+      { id: 5, name: "محمد آل سعود", investmentAmount: 2000000, joinDate: "2024-05-20", share: "4.8%" },
+      { id: 6, name: "سارة القحطاني", investmentAmount: 1500000, joinDate: "2024-05-25", share: "3.6%" },
+      { id: 7, name: "شركة الفنادق العالمية", investmentAmount: 2500000, joinDate: "2024-05-30", share: "6.0%" },
+      { id: 8, name: "بندر الشمري", investmentAmount: 1000000, joinDate: "2024-06-01", share: "2.4%" },
+      { id: 9, name: "نورة الزهراني", investmentAmount: 1000000, joinDate: "2024-06-02", share: "2.4%" },
+      { id: 10, name: "شركة فنادق الخليج", investmentAmount: 2000000, joinDate: "2024-06-03", share: "4.8%" },
+      { id: 11, name: "أحمد العسيري", investmentAmount: 1000000, joinDate: "2024-06-04", share: "2.4%" },
+      { id: 12, name: "منى الشهري", investmentAmount: 1000000, joinDate: "2024-06-05", share: "2.4%" },
+      { id: 13, name: "صندوق الاستثمارات الجنوبية", investmentAmount: 1500000, joinDate: "2024-06-06", share: "3.6%" },
+      { id: 14, name: "عبدالله القرني", investmentAmount: 1000000, joinDate: "2024-06-07", share: "2.4%" },
+      { id: 15, name: "لولوة الدوسري", investmentAmount: 1000000, joinDate: "2024-06-08", share: "2.4%" },
+      { id: 16, name: "شركة التطوير السياحي", investmentAmount: 1500000, joinDate: "2024-06-09", share: "3.6%" },
+      { id: 17, name: "فهد العتيبي", investmentAmount: 1000000, joinDate: "2024-06-10", share: "2.4%" },
+      { id: 18, name: "هيئة تطوير منطقة عسير", investmentAmount: 500000, joinDate: "2024-06-11", share: "1.2%" }
+    ],
+    financialData: {
+      quarterlyReturns: [
+        { quarter: "Q3 2024", amount: 0, status: "مرحلة التخطيط" },
+        { quarter: "Q4 2024", amount: 0, status: "مرحلة التخطيط" },
+        { quarter: "2025-2027", amount: 0, status: "فترة البناء" },
+        { quarter: "Q1 2028", amount: 1750000, status: "أول عائد" },
+        { quarter: "Q2 2028", amount: 1850000, status: "نشط" }
+      ],
+      expenses: [
+        { category: "شراء الأرض", amount: 12000000, percentage: 28.6 },
+        { category: "أعمال البنية التحتية", amount: 6500000, percentage: 15.5 },
+        { category: "البناء والإنشاء", amount: 15000000, percentage: 35.7 },
+        { category: "التأثيث والتجهيز", amount: 5500000, percentage: 13.1 },
+        { category: "التصاميم والاستشارات", amount: 1500000, percentage: 3.6 },
+        { category: "التراخيص والرسوم", amount: 1000000, percentage: 2.4 },
+        { category: "أخرى", amount: 500000, percentage: 1.2 }
+      ],
+      monthlyReports: [
+        { month: "مايو 2024", completionAdded: "2%", expensesAmount: 200000, notes: "بدء دراسة الجدوى وجمع البيانات" },
+        { month: "يونيو 2024", completionAdded: "3%", expensesAmount: 250000, notes: "استكمال دراسة الجدوى واختيار الموقع" }
+      ]
+    },
+    updates: [
+      { date: "2024-06-10", title: "اختيار موقع المشروع", description: "تم الانتهاء من المفاضلة بين المواقع المقترحة واختيار الموقع النهائي في الهضبة الغربية." },
+      { date: "2024-05-20", title: "استكمال دراسة الجدوى الأولية", description: "أظهرت دراسة الجدوى الأولية نتائج إيجابية ومعدل عائد داخلي متوقع 19.5%." },
+      { date: "2024-05-05", title: "تأمين التمويل المبدئي", description: "تم تأمين التمويل المبدئي للمشروع من خلال شركاء استراتيجيين في قطاع السياحة." }
+    ],
+    riskAnalysis: {
+      marketRisk: { level: "منخفض", description: "نمو متسارع في قطاع السياحة الداخلية" },
+      operationalRisk: { level: "متوسط", description: "تحديات تشغيلية نظراً للموقع البعيد نسبياً" },
+      financialRisk: { level: "متوسط", description: "ارتفاع حجم الاستثمار المطلوب" },
+      regulatoryRisk: { level: "منخفض", description: "دعم حكومي قوي لمشاريع السياحة" }
+    }
+  }
 ];
 
 const InvestmentProjectDetails = () => {
@@ -297,46 +685,55 @@ const InvestmentProjectDetails = () => {
                     <CardTitle>تحليل المخاطر</CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-4">
-                    <div>
-                      <div className="flex justify-between">
-                        <p className="text-sm font-medium">مخاطر السوق</p>
-                        <Badge variant={project.riskAnalysis.marketRisk.level === "منخفض" ? "success" : 
-                                        project.riskAnalysis.marketRisk.level === "متوسط" ? "warning" : "destructive"}>
-                          {project.riskAnalysis.marketRisk.level}
-                        </Badge>
+                    {project.riskAnalysis && (
+                      <>
+                        <div>
+                          <div className="flex justify-between">
+                            <p className="text-sm font-medium">مخاطر السوق</p>
+                            <Badge variant={project.riskAnalysis.marketRisk.level === "منخفض" ? "success" : 
+                                          project.riskAnalysis.marketRisk.level === "متوسط" ? "warning" : "destructive"}>
+                              {project.riskAnalysis.marketRisk.level}
+                            </Badge>
+                          </div>
+                          <p className="text-sm text-muted-foreground">{project.riskAnalysis.marketRisk.description}</p>
+                        </div>
+                        <div>
+                          <div className="flex justify-between">
+                            <p className="text-sm font-medium">مخاطر التشغيل</p>
+                            <Badge variant={project.riskAnalysis.operationalRisk.level === "منخفض" ? "success" : 
+                                          project.riskAnalysis.operationalRisk.level === "متوسط" ? "warning" : "destructive"}>
+                              {project.riskAnalysis.operationalRisk.level}
+                            </Badge>
+                          </div>
+                          <p className="text-sm text-muted-foreground">{project.riskAnalysis.operationalRisk.description}</p>
+                        </div>
+                        <div>
+                          <div className="flex justify-between">
+                            <p className="text-sm font-medium">مخاطر مالية</p>
+                            <Badge variant={project.riskAnalysis.financialRisk.level === "منخفض" ? "success" : 
+                                          project.riskAnalysis.financialRisk.level === "متوسط" ? "warning" : "destructive"}>
+                              {project.riskAnalysis.financialRisk.level}
+                            </Badge>
+                          </div>
+                          <p className="text-sm text-muted-foreground">{project.riskAnalysis.financialRisk.description}</p>
+                        </div>
+                        <div>
+                          <div className="flex justify-between">
+                            <p className="text-sm font-medium">مخاطر تنظيمية</p>
+                            <Badge variant={project.riskAnalysis.regulatoryRisk.level === "منخفض" ? "success" : 
+                                         project.riskAnalysis.regulatoryRisk.level === "متوسط" ? "warning" : "destructive"}>
+                              {project.riskAnalysis.regulatoryRisk.level}
+                            </Badge>
+                          </div>
+                          <p className="text-sm text-muted-foreground">{project.riskAnalysis.regulatoryRisk.description}</p>
+                        </div>
+                      </>
+                    )}
+                    {!project.riskAnalysis && (
+                      <div className="flex items-center justify-center h-40 text-muted-foreground">
+                        لا يوجد بيانات لتحليل المخاطر
                       </div>
-                      <p className="text-sm text-muted-foreground">{project.riskAnalysis.marketRisk.description}</p>
-                    </div>
-                    <div>
-                      <div className="flex justify-between">
-                        <p className="text-sm font-medium">مخاطر التشغيل</p>
-                        <Badge variant={project.riskAnalysis.operationalRisk.level === "منخفض" ? "success" : 
-                                        project.riskAnalysis.operationalRisk.level === "متوسط" ? "warning" : "destructive"}>
-                          {project.riskAnalysis.operationalRisk.level}
-                        </Badge>
-                      </div>
-                      <p className="text-sm text-muted-foreground">{project.riskAnalysis.operationalRisk.description}</p>
-                    </div>
-                    <div>
-                      <div className="flex justify-between">
-                        <p className="text-sm font-medium">مخاطر مالية</p>
-                        <Badge variant={project.riskAnalysis.financialRisk.level === "منخفض" ? "success" : 
-                                        project.riskAnalysis.financialRisk.level === "متوسط" ? "warning" : "destructive"}>
-                          {project.riskAnalysis.financialRisk.level}
-                        </Badge>
-                      </div>
-                      <p className="text-sm text-muted-foreground">{project.riskAnalysis.financialRisk.description}</p>
-                    </div>
-                    <div>
-                      <div className="flex justify-between">
-                        <p className="text-sm font-medium">مخاطر تنظيمية</p>
-                        <Badge variant={project.riskAnalysis.regulatoryRisk.level === "منخفض" ? "success" : 
-                                       project.riskAnalysis.regulatoryRisk.level === "متوسط" ? "warning" : "destructive"}>
-                          {project.riskAnalysis.regulatoryRisk.level}
-                        </Badge>
-                      </div>
-                      <p className="text-sm text-muted-foreground">{project.riskAnalysis.regulatoryRisk.description}</p>
-                    </div>
+                    )}
                   </CardContent>
                 </Card>
               </div>
@@ -690,3 +1087,4 @@ const InvestmentProjectDetails = () => {
 };
 
 export default InvestmentProjectDetails;
+
