@@ -1,10 +1,10 @@
-
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { 
   X, Users, Calendar, DollarSign, LogOut, Heart, Shield, LayoutDashboard,
   BookOpen, FileText, Receipt, File, PieChart, TrendingUp, Target, 
-  Briefcase, FolderKanban, ListTodo, ClipboardList, UserPlus, Puzzle
+  Briefcase, FolderKanban, ListTodo, ClipboardList, UserPlus, Puzzle,
+  PiggyBank, Wallet, CoinsIcon, LineChart, BarChart
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -19,6 +19,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, closeSidebar }) => {
   const [showAccountingMenu, setShowAccountingMenu] = useState(false);
   const [showProjectsMenu, setShowProjectsMenu] = useState(false);
   const [showHRMenu, setShowHRMenu] = useState(false);
+  const [showInvestmentsMenu, setShowInvestmentsMenu] = useState(false);
 
   // Define main dashboard link
   const dashboardLink = {
@@ -136,6 +137,40 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, closeSidebar }) => {
     }
   ];
 
+  // Define investment management links
+  const investmentLinks = [
+    {
+      name: "المستثمرين",
+      to: "/investments/investors",
+      icon: <Users className="h-5 w-5" />,
+    },
+    {
+      name: "المشاريع الاستثمارية",
+      to: "/investments/projects",
+      icon: <Briefcase className="h-5 w-5" />,
+    },
+    {
+      name: "الأرباح والعوائد",
+      to: "/investments/returns",
+      icon: <PiggyBank className="h-5 w-5" />,
+    },
+    {
+      name: "المحفظة الاستثمارية",
+      to: "/investments/portfolio",
+      icon: <Wallet className="h-5 w-5" />,
+    },
+    {
+      name: "تحليل الاستثمارات",
+      to: "/investments/analysis",
+      icon: <LineChart className="h-5 w-5" />,
+    },
+    {
+      name: "التقارير المالية",
+      to: "/investments/reports",
+      icon: <BarChart className="h-5 w-5" />,
+    },
+  ];
+
   return (
     <>
       {/* Overlay for mobile */}
@@ -218,6 +253,45 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, closeSidebar }) => {
             {showHRMenu && (
               <div className="mt-2 mr-4 pr-2 space-y-1 border-r border-gray-100">
                 {hrLinks.map((link) => (
+                  <NavLink
+                    key={link.to}
+                    to={link.to}
+                    onClick={closeSidebar}
+                    className={({ isActive }) => cn(
+                      "flex items-center px-4 py-2 text-sm rounded-lg transition-all duration-200",
+                      isActive 
+                        ? "bg-hrm-lightBlue text-hrm-blue font-medium" 
+                        : "text-gray-600 hover:bg-gray-50"
+                    )}
+                  >
+                    <span className="ml-3">{link.icon}</span>
+                    {link.name}
+                  </NavLink>
+                ))}
+              </div>
+            )}
+          </div>
+          
+          {/* Investments Section */}
+          <div className="mt-6 pt-6 border-t border-gray-100">
+            <button
+              onClick={() => setShowInvestmentsMenu(!showInvestmentsMenu)}
+              className="flex items-center justify-between w-full px-4 py-3 text-sm text-gray-600 hover:bg-gray-50 rounded-lg"
+            >
+              <div className="flex items-center">
+                <span className="ml-3"><CoinsIcon className="h-5 w-5" /></span>
+                <span className="font-semibold">إدارة الاستثمارات</span>
+              </div>
+              <span className={`transform transition-transform ${showInvestmentsMenu ? 'rotate-180' : ''}`}>
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </span>
+            </button>
+            
+            {showInvestmentsMenu && (
+              <div className="mt-2 mr-4 pr-2 space-y-1 border-r border-gray-100">
+                {investmentLinks.map((link) => (
                   <NavLink
                     key={link.to}
                     to={link.to}

@@ -33,6 +33,13 @@ import CreateProject from "./pages/projects/CreateProject";
 import Tasks from "./pages/projects/Tasks";
 import TaskDetails from "./pages/projects/TaskDetails";
 import TaskBoard from "./pages/projects/TaskBoard";
+// Investment Management Pages
+import Investors from "./pages/investments/Investors";
+import InvestmentProjects from "./pages/investments/Projects";
+import Returns from "./pages/investments/Returns";
+import Portfolio from "./pages/investments/Portfolio";
+import Analysis from "./pages/investments/Analysis";
+import Reports from "./pages/investments/Reports";
 
 const queryClient = new QueryClient();
 
@@ -75,6 +82,14 @@ const App = () => (
           <Route path="/tasks" element={<Tasks />} />
           <Route path="/tasks/:id" element={<TaskDetails />} />
           <Route path="/task-board" element={<TaskBoard />} />
+          
+          {/* Investment Management Routes */}
+          <Route path="/investments/investors" element={<Investors />} />
+          <Route path="/investments/projects" element={<InvestmentProjects />} />
+          <Route path="/investments/returns" element={<Returns />} />
+          <Route path="/investments/portfolio" element={<Portfolio />} />
+          <Route path="/investments/analysis" element={<Analysis />} />
+          <Route path="/investments/reports" element={<Reports />} />
           
           <Route path="*" element={<NotFound />} />
         </Routes>
