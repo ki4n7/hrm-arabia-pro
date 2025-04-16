@@ -36,6 +36,7 @@ import TaskBoard from "./pages/projects/TaskBoard";
 // Investment Management Pages
 import Investors from "./pages/investments/Investors";
 import InvestmentProjects from "./pages/investments/Projects";
+import InvestmentProjectDetails from "./pages/investments/ProjectDetails";
 import Returns from "./pages/investments/Returns";
 import Portfolio from "./pages/investments/Portfolio";
 import Analysis from "./pages/investments/Analysis";
@@ -86,6 +87,7 @@ const App = () => (
           {/* Investment Management Routes */}
           <Route path="/investments/investors" element={<Investors />} />
           <Route path="/investments/projects" element={<InvestmentProjects />} />
+          <Route path="/investments/project/:id" element={<InvestmentProjectDetails />} />
           <Route path="/investments/returns" element={<Returns />} />
           <Route path="/investments/portfolio" element={<Portfolio />} />
           <Route path="/investments/analysis" element={<Analysis />} />
