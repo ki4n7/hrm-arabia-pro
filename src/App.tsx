@@ -41,6 +41,8 @@ import Returns from "./pages/investments/Returns";
 import Portfolio from "./pages/investments/Portfolio";
 import Analysis from "./pages/investments/Analysis";
 import Reports from "./pages/investments/Reports";
+// Customer Support Pages
+import CustomerSupport from "./pages/support/CustomerSupport";
 
 const queryClient = new QueryClient();
 
@@ -92,6 +94,9 @@ const App = () => (
           <Route path="/investments/portfolio" element={<Portfolio />} />
           <Route path="/investments/analysis" element={<Analysis />} />
           <Route path="/investments/reports" element={<Reports />} />
+          
+          {/* Customer Support Routes */}
+          <Route path="/support" element={<CustomerSupport />} />
           
           <Route path="*" element={<NotFound />} />
         </Routes>

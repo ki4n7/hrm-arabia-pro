@@ -1,10 +1,12 @@
+
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { 
   X, Users, Calendar, DollarSign, LogOut, Heart, Shield, LayoutDashboard,
   BookOpen, FileText, Receipt, File, PieChart, TrendingUp, Target, 
   Briefcase, FolderKanban, ListTodo, ClipboardList, UserPlus, Puzzle,
-  PiggyBank, Wallet, CoinsIcon, LineChart, BarChart
+  PiggyBank, Wallet, CoinsIcon, LineChart, BarChart, MessageCircle,
+  HelpCircle, LifeBuoy, FileQuestion, AlertTriangle
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -20,6 +22,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, closeSidebar }) => {
   const [showProjectsMenu, setShowProjectsMenu] = useState(false);
   const [showHRMenu, setShowHRMenu] = useState(false);
   const [showInvestmentsMenu, setShowInvestmentsMenu] = useState(false);
+  const [showSupportMenu, setShowSupportMenu] = useState(false);
 
   // Define main dashboard link
   const dashboardLink = {
@@ -171,6 +174,15 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, closeSidebar }) => {
     },
   ];
 
+  // Define customer support links
+  const supportLinks = [
+    {
+      name: "خدمة العملاء والدعم",
+      to: "/support",
+      icon: <LifeBuoy className="h-5 w-5" />,
+    },
+  ];
+
   return (
     <>
       {/* Overlay for mobile */}
@@ -253,6 +265,45 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, closeSidebar }) => {
             {showHRMenu && (
               <div className="mt-2 mr-4 pr-2 space-y-1 border-r border-gray-100">
                 {hrLinks.map((link) => (
+                  <NavLink
+                    key={link.to}
+                    to={link.to}
+                    onClick={closeSidebar}
+                    className={({ isActive }) => cn(
+                      "flex items-center px-4 py-2 text-sm rounded-lg transition-all duration-200",
+                      isActive 
+                        ? "bg-hrm-lightBlue text-hrm-blue font-medium" 
+                        : "text-gray-600 hover:bg-gray-50"
+                    )}
+                  >
+                    <span className="ml-3">{link.icon}</span>
+                    {link.name}
+                  </NavLink>
+                ))}
+              </div>
+            )}
+          </div>
+          
+          {/* Customer Support Section */}
+          <div className="mt-6 pt-6 border-t border-gray-100">
+            <button
+              onClick={() => setShowSupportMenu(!showSupportMenu)}
+              className="flex items-center justify-between w-full px-4 py-3 text-sm text-gray-600 hover:bg-gray-50 rounded-lg"
+            >
+              <div className="flex items-center">
+                <span className="ml-3"><MessageCircle className="h-5 w-5" /></span>
+                <span className="font-semibold">خدمة العملاء والدعم</span>
+              </div>
+              <span className={`transform transition-transform ${showSupportMenu ? 'rotate-180' : ''}`}>
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </span>
+            </button>
+            
+            {showSupportMenu && (
+              <div className="mt-2 mr-4 pr-2 space-y-1 border-r border-gray-100">
+                {supportLinks.map((link) => (
                   <NavLink
                     key={link.to}
                     to={link.to}

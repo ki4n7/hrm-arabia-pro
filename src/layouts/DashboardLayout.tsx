@@ -60,6 +60,8 @@ const getTitleFromPath = (path: string): string => {
       return "التأمين الصحي";
     case "/social-security":
       return "الضمان الاجتماعي";
+    case "/support":
+      return "خدمة العملاء والدعم الفني";
     default:
       return "نظام إدارة الموارد البشرية";
   }
@@ -82,6 +84,8 @@ const getDescriptionFromPath = (path: string): string => {
       return "إدارة التأمين الصحي للموظفين";
     case "/social-security":
       return "إدارة الضمان الاجتماعي";
+    case "/support":
+      return "تذاكر الدعم الفني وخدمة العملاء والمحادثة والاستفسارات والشكاوى";
     default:
       return "";
   }
