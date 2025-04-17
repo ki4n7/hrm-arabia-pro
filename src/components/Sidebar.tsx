@@ -6,7 +6,8 @@ import {
   BookOpen, FileText, Receipt, File, PieChart, TrendingUp, Target, 
   Briefcase, FolderKanban, ListTodo, ClipboardList, UserPlus, Puzzle,
   PiggyBank, Wallet, CoinsIcon, LineChart, BarChart, MessageCircle,
-  HelpCircle, LifeBuoy, FileQuestion, AlertTriangle
+  HelpCircle, LifeBuoy, FileQuestion, AlertTriangle, Package, Store,
+  BoxIcon, Truck, ShoppingCart, PackageOpen, Boxes
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -23,6 +24,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, closeSidebar }) => {
   const [showHRMenu, setShowHRMenu] = useState(false);
   const [showInvestmentsMenu, setShowInvestmentsMenu] = useState(false);
   const [showSupportMenu, setShowSupportMenu] = useState(false);
+  const [showInventoryMenu, setShowInventoryMenu] = useState(false);
 
   // Define main dashboard link
   const dashboardLink = {
@@ -183,6 +185,15 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, closeSidebar }) => {
     },
   ];
 
+  // Define inventory management links
+  const inventoryLinks = [
+    {
+      name: "المخزون والمستودعات",
+      to: "/inventory/inventory",
+      icon: <Boxes className="h-5 w-5" />,
+    },
+  ];
+
   return (
     <>
       {/* Overlay for mobile */}
@@ -265,6 +276,45 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, closeSidebar }) => {
             {showHRMenu && (
               <div className="mt-2 mr-4 pr-2 space-y-1 border-r border-gray-100">
                 {hrLinks.map((link) => (
+                  <NavLink
+                    key={link.to}
+                    to={link.to}
+                    onClick={closeSidebar}
+                    className={({ isActive }) => cn(
+                      "flex items-center px-4 py-2 text-sm rounded-lg transition-all duration-200",
+                      isActive 
+                        ? "bg-hrm-lightBlue text-hrm-blue font-medium" 
+                        : "text-gray-600 hover:bg-gray-50"
+                    )}
+                  >
+                    <span className="ml-3">{link.icon}</span>
+                    {link.name}
+                  </NavLink>
+                ))}
+              </div>
+            )}
+          </div>
+
+          {/* Inventory Management Section */}
+          <div className="mt-6 pt-6 border-t border-gray-100">
+            <button
+              onClick={() => setShowInventoryMenu(!showInventoryMenu)}
+              className="flex items-center justify-between w-full px-4 py-3 text-sm text-gray-600 hover:bg-gray-50 rounded-lg"
+            >
+              <div className="flex items-center">
+                <span className="ml-3"><PackageOpen className="h-5 w-5" /></span>
+                <span className="font-semibold">إدارة المخزون والمستودعات</span>
+              </div>
+              <span className={`transform transition-transform ${showInventoryMenu ? 'rotate-180' : ''}`}>
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </span>
+            </button>
+            
+            {showInventoryMenu && (
+              <div className="mt-2 mr-4 pr-2 space-y-1 border-r border-gray-100">
+                {inventoryLinks.map((link) => (
                   <NavLink
                     key={link.to}
                     to={link.to}

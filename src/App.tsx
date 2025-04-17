@@ -43,6 +43,10 @@ import Analysis from "./pages/investments/Analysis";
 import Reports from "./pages/investments/Reports";
 // Customer Support Pages
 import CustomerSupport from "./pages/support/CustomerSupport";
+// Inventory Management Pages
+import Inventory from "./pages/inventory/Inventory";
+import ProductDetails from "./pages/inventory/ProductDetails";
+import WarehouseDetails from "./pages/inventory/WarehouseDetails";
 
 const queryClient = new QueryClient();
 
@@ -97,6 +101,11 @@ const App = () => (
           
           {/* Customer Support Routes */}
           <Route path="/support" element={<CustomerSupport />} />
+          
+          {/* Inventory Management Routes */}
+          <Route path="/inventory/inventory" element={<Inventory />} />
+          <Route path="/inventory/product/:id" element={<ProductDetails />} />
+          <Route path="/inventory/warehouse/:id" element={<WarehouseDetails />} />
           
           <Route path="*" element={<NotFound />} />
         </Routes>

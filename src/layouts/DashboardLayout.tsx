@@ -62,7 +62,15 @@ const getTitleFromPath = (path: string): string => {
       return "الضمان الاجتماعي";
     case "/support":
       return "خدمة العملاء والدعم الفني";
+    case "/inventory/inventory":
+      return "إدارة المخزون والمستودعات";
     default:
+      // Handle inventory product or warehouse detail pages
+      if (path.startsWith("/inventory/product/")) {
+        return "تفاصيل المنتج";
+      } else if (path.startsWith("/inventory/warehouse/")) {
+        return "تفاصيل المستودع";
+      }
       return "نظام إدارة الموارد البشرية";
   }
 };
@@ -86,7 +94,15 @@ const getDescriptionFromPath = (path: string): string => {
       return "إدارة الضمان الاجتماعي";
     case "/support":
       return "تذاكر الدعم الفني وخدمة العملاء والمحادثة والاستفسارات والشكاوى";
+    case "/inventory/inventory":
+      return "إدارة المخزون والمستودعات والمنتجات ونقاط البيع والاستيراد والتصدير";
     default:
+      // Handle inventory product or warehouse detail pages
+      if (path.startsWith("/inventory/product/")) {
+        return "عرض وإدارة تفاصيل المنتج والمخزون";
+      } else if (path.startsWith("/inventory/warehouse/")) {
+        return "عرض وإدارة تفاصيل المستودع";
+      }
       return "";
   }
 };
